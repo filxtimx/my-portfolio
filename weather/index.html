@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/weather-51.png">
+  <link rel="apple-touch-icon" href="../images/weather-51.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light">
+  <div class="sunbeam"></div>
+
+  <div id="loader" class="loader">
+    <div class="emoji">⛅</div>
+    <p>Checking the skies...</p>
+  </div>
+
+  <div class="weather-box">
+    <div class="toggle-mode">
+      <button id="mode-btn"><i class="fas fa-sun"></i> / <i class="fas fa-moon"></i></button>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="city-input" placeholder="Search city..." autocomplete="off">
+      <button id="search-btn"><i class="fas fa-search"></i></button>
+      <ul id="suggestions" class="suggestions hidden"></ul>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+
+    <div class="weather-result hidden" id="weather-result">
+      <div class="icon" id="icon">🌤️</div>
+      <h2 id="city-name">City</h2>
+      <p id="description">Clear sky</p>
+      <h1 id="temperature">25°C</h1>
+      <p><i class="fas fa-wind"></i> <span id="wind">2 m/s</span></p>
+      <p><i class="fas fa-tint"></i> <span id="humidity">40%</span></p>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

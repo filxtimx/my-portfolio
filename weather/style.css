@@ -1,0 +1,202 @@
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family:'Segoe UI',sans-serif;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  overflow:hidden;
+  color:#fff;
+  transition:background .6s;
+  position:relative;
+}
+
+/* BACKGROUNDS */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  transform:scale(1.05);
+  animation:bg-pan 40s linear infinite;
+}
+@keyframes bg-pan{
+  0%{transform:scale(1.05) translate(0,0);}
+  50%{transform:scale(1.05) translate(-2%, -2%);}
+  100%{transform:scale(1.05) translate(0,0);}
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  transition:background .4s;
+}
+
+/* Light mode – твоята снимка */
+body.light::before{
+  background-image:url("../images/weather.jpg"); /* ← смени ако е друго име */
+}
+body.light::after{
+  background:rgba(0,0,0,.25);
+}
+
+/* Dark mode – син градиент */
+body.dark{
+  background:#0b1c3b;
+}
+body.dark::before{
+  background-image:none;
+  background:linear-gradient(135deg,#0b1c3b,#081124 60%,#020811);
+  animation:none;
+  transform:none;
+}
+body.dark::after{
+  background:rgba(0,0,0,.35);
+}
+
+/* SUN BEAM */
+.sunbeam{
+  position:fixed;
+  top:-250px;
+  left:50%;
+  width:900px;
+  height:900px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  z-index:-1;
+  opacity:0;
+  transition:opacity .6s;
+  mix-blend-mode:screen;
+}
+body.light .sunbeam{opacity:1;}
+.sunbeam::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center,
+      rgba(255,255,200,.8) 0%,
+      rgba(255,255,160,.45) 20%,
+      rgba(255,220,0,.15) 45%,
+      rgba(255,220,0,0) 70%);
+  filter:blur(50px);
+  animation:pulse 8s ease-in-out infinite;
+}
+.sunbeam::after{
+  content:"";
+  position:absolute;
+  inset:-50%;
+  background:conic-gradient(from 0deg,
+      rgba(255,255,255,.35) 0 12deg,
+      transparent 12deg 24deg);
+  animation:spin 20s linear infinite;
+  filter:blur(20px);
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.12);}
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* UI */
+.weather-box{
+  background:rgba(255,255,255,0.12);
+  padding:40px;
+  border-radius:20px;
+  backdrop-filter:blur(18px);
+  width:100%;
+  max-width:500px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.35);
+  position:relative;
+  z-index:2;
+  transition:background .4s,color .4s;
+}
+.toggle-mode{text-align:right;margin-bottom:10px;}
+.toggle-mode button{
+  background:#ffffff33;border:none;color:white;padding:5px 10px;
+  border-radius:10px;cursor:pointer;font-size:18px;
+}
+.search-bar{position:relative;display:flex;margin-bottom:20px;}
+.search-bar input{
+  flex:1;padding:12px;border:none;border-radius:10px 0 0 10px;
+  font-size:18px;outline:none;
+}
+.search-bar button{
+  padding:0 20px;background:white;border:none;border-radius:0 10px 10px 0;
+  cursor:pointer;font-size:18px;color:#2a5298;
+}
+.suggestions{
+  position:absolute;top:100%;left:0;right:60px;
+  background:rgba(0,0,0,0.85);
+  list-style:none;max-height:180px;overflow-y:auto;
+  border-radius:0 0 10px 10px;border:1px solid #444;z-index:5;
+}
+.suggestions li{
+  padding:8px 12px;cursor:pointer;color:#fff;font-size:15px;
+}
+.suggestions li:hover{background:rgba(255,255,255,0.12);}
+
+.weather-result{text-align:center;}
+.weather-result h2{font-size:28px;margin-bottom:10px;}
+.weather-result .icon{font-size:50px;margin-bottom:10px;}
+.weather-result p{font-size:18px;margin:5px 0;}
+
+.error{
+  background:#ff5c5c;color:#fff;padding:10px;border-radius:8px;
+  margin-bottom:15px;font-size:16px;
+}
+.hidden{display:none!important;}
+
+/* Loader */
+.loader{
+  position:fixed;inset:0;background:rgba(0,0,0,0.75);color:white;
+  display:none;flex-direction:column;justify-content:center;align-items:center;
+  font-size:24px;z-index:9999;text-align:center;pointer-events:none;
+}
+.loader.show{display:flex;}
+.loader .emoji{
+  font-size:80px;margin-bottom:20px;animation:float 1.5s ease-in-out infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+  100%{transform:translateY(0)}
+}
+
+/* Dark tweaks */
+body.dark .weather-box{background:rgba(0,0,0,0.35);color:#eee;}
+body.dark .toggle-mode button{background:#444;color:#eee;}
+body.dark .search-bar button{color:#111;}
+
+@media (max-width: 600px) {
+  .weather-box {
+    max-width: 95vw;
+    padding: 28px 20px;
+    border-radius: 16px;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .search-bar input {
+    border-radius: 10px;
+  }
+  .search-bar button {
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 12px 0;
+  }
+
+  .weather-result h2 { font-size: 22px; }
+  .weather-result .icon { font-size: 42px; }
+  .weather-result p,
+  #description,
+  #wind,
+  #humidity { font-size: 16px; }
+}

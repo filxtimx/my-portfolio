@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Petur Apostolov</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+</head>
+<body>
+
+  <!-- LANGUAGE SWITCH -->
+  <div class="lang-switch">
+    <input type="checkbox" id="toggle-lang" />
+    <label for="toggle-lang">
+      <span class="lang-en">EN</span>
+      <span class="lang-bg">BG</span>
+      <div class="switch-thumb"></div>
+    </label>
+  </div>
+
+  <!-- LOADER OVERLAY -->
+  <div id="loader">
+    <div id="lottie"></div>
+    <img id="loader-fallback" src="images/fallback.gif" alt="Loading…" />
+  </div>
+
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/video/Iridescent_4K_Motion_Background_Loop.mp4"
+            type="video/mp4" />
+  </video>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1 id="hero-title">Petur Apostolov</h1>
+    <p id="hero-text">
+      I started programming at 15 in 9th grade with Python and today, at 20,
+      I’m in my third semester of IT studies at New Bulgarian University.
+      Over the years I’ve built up skills in C#, C, C++, JavaScript, HTML, CSS
+      and JSON—though my true passion is frontend development. I love crafting
+      clean, interactive user interfaces and plan to dive into backend work as
+      I grow, but right now I’m all about the UI.
+    </p>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="portfolio">
+    <h2 id="portfolio-title">My Projects</h2>
+
+    <div class="last-project">
+      <h3 id="last-label">Last project:</h3>
+      <a href="birds/index.html" class="project-card">
+        <img src="images/birds.png"
+             alt="Birds Site Screenshot"
+             class="project-screenshot" />
+        <div class="project-title">Birds Site</div>
+      </a>
+    </div>
+
+    <h3 id="other-label">Other projects</h3>
+    <div class="projects-grid other-projects">
+      <a href="to-do-list/index.html" class="project-card">
+        <img src="images/to-do-list.png"
+             alt="To-Do List Screenshot"
+             class="project-screenshot" />
+        <div class="project-title">To-Do List App</div>
+      </a>
+      <a href="weather/index.html" class="project-card">
+        <img src="images/weather-pic.png"
+             alt="Weather App Screenshot"
+             class="project-screenshot" />
+        <div class="project-title">Weather App</div>
+      </a>
+      <a href="mini_games/index.html" class="project-card">
+        <img src="images/mini_games.png"
+             alt="Mini Games Screenshot"
+             class="project-screenshot" />
+        <div class="project-title">Mini Games</div>
+      </a>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

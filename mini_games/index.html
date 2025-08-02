@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Mini Games</title>
+  <link rel="icon" href="assets/mini_games.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- === Background Videos === -->
+  <video id="main-video" class="bg-video visible" autoplay muted loop playsinline>
+    <source src="assets/video/vecteezy_triangle.mp4" type="video/mp4" />
+  </video>
+  <video id="memory-bg" class="bg-video hidden" autoplay muted loop playsinline>
+    <source src="assets/video/vecteezy_dark_blue.mp4" type="video/mp4" />
+  </video>
+  <video id="reaction-bg" class="bg-video hidden" autoplay muted loop playsinline>
+    <source src="assets/video/vecteezy_purple.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-text">
+      <span class="blue">Mini</span><span class="purple">Games</span>
+    </div>
+  </div>
+
+  <!-- Main Menu -->
+  <div id="menu" class="menu visible">
+    <div class="cards-container">
+      <div id="card-memory" class="card blue">Memory Game</div>
+      <div id="card-reaction" class="card purple">Reaction Speed Game</div>
+    </div>
+  </div>
+
+   <!-- Memory Game Screen -->
+  <div id="memory-game" class="screen hidden">
+    <div class="screen-content blue">
+      <button id="exit-memory" class="exit">
+        <img src="assets/exit.png" alt="Exit" />
+      </button>
+      <h2>Memory Game</h2>
+      <button id="ready-memory" class="neon-btn blue-btn">Ready</button>
+      <div id="memory-grid" class="memory-grid"></div>
+      <button id="replay-memory" class="neon-btn blue-btn" style="display:none">Replay</button>
+      <div id="memory-info" class="memory-info">
+        Moves: <span id="move-count">0</span> |
+        Time: <span id="timer">0.0</span>s
+      </div>
+    </div>
+  </div>
+
+
+   <!-- Reaction Speed Game Screen -->
+  <div id="reaction-game" class="screen hidden">
+    <div class="screen-content purple">
+      <button id="exit-reaction" class="exit">
+        <img src="assets/exit.png" alt="Exit"/>
+      </button>
+      <h2>Reaction Speed Game</h2>
+      <button id="ready-btn" class="neon-btn">Ready</button>
+      <div id="reaction-area" class="reaction-area">
+        <div id="reaction-box" class="reaction-box"></div>
+      </div>
+      <div id="reaction-info" class="reaction-info">
+        Result: <span id="last-time">--</span>ms
+      </div>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

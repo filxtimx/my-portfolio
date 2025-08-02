@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bg: #1e1f22;
+  --app-bg: rgba(54, 57, 63, 0.85);
+  --text: #fff;
+  --primary: #5865f2;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --task-bg: #2a2d31;
+  --low: #43b581;
+  --medium: #faa61a;
+  --high: #f04747;
+}
+
+body.light {
+  --bg: #f5f5f5;
+  --app-bg: rgba(255, 255, 255, 0.85);
+  --text: #111;
+  --primary: #5865f2;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --task-bg: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- BASE ---------- */
+body {
+  font-family: 'Inter', sans-serif;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center/cover fixed;
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.app {
+  background: var(--app-bg);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px var(--shadow);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  flex: 1 1 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 10px;
+  background: #1c1d21;
+  color: #fff;
+  font-size: 1rem;   /* >=16px за iOS */
+}
+
+button {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #4752c4;
+}
+
+/* ---------- FILTERS ---------- */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.filters button {
+  flex: 1;
+  background: #2b2d31;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  padding: .6rem 0;
+}
+
+.filters button.active {
+  background: var(--primary);
+}
+
+/* ---------- LIST ---------- */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: var(--task-bg);
+  margin-bottom: 0.6rem;
+  padding: 0.8rem;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 6px 10px;
+  align-items: center;
+}
+
+li.done {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+li input[type="checkbox"]{
+  width: 22px;
+  height: 22px;
+  accent-color: var(--primary);
+}
+
+li span{
+  grid-column: 2 / 3;
+  font-size: 0.95rem;
+}
+
+li small{
+  grid-column: 2 / 3;
+  font-size: 0.75rem;
+  opacity: .7;
+}
+
+li button{
+  grid-column: 3 / 4;
+  background: transparent;
+  color: var(--text);
+  padding: 0 .5rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  border-radius: 6px;
+}
+li button:hover{
+  background: rgba(255,255,255,.1);
+}
+
+/* Priority bars (optional small stripe on left) */
+li.low    { border-left: 5px solid var(--low); }
+li.medium { border-left: 5px solid var(--medium); }
+li.high   { border-left: 5px solid var(--high); }
+
+/* ---------- FEEDBACK ---------- */
+#congrats {
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+#congrats.hidden { display: none; }
+
+#stats {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  color: var(--text);
+}
+
+/* ---------- LOADER ---------- */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease;
+}
+#loader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #444;
+  border-top: 5px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Background particles */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Theme toggle button */
+#theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: var(--app-bg);
+  color: var(--text);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  padding: 0.6rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+/* ---------- DARK MODE EXTRA ---------- */
+body.dark {
+  background: #121212;
+  color: #f0f0f0;
+}
+body.dark .app {
+  background: #1e1e2f;
+}
+body.dark input,
+body.dark select,
+body.dark button {
+  background: #2a2a40;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 600px) {
+  body{
+    padding: 1rem;
+    align-items: flex-start;
+    background-attachment: scroll; /* по-малко лаг */
+  }
+  /* махни частиците – батерия/производителност */
+  #particles-js{ display:none; }
+
+  .app{
+    padding: 1.2rem 1rem;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: 14px;
+  }
+
+  h1{
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  form{
+    flex-direction: column;
+    gap: .7rem;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  select,
+  button{
+    width: 100%;
+    font-size: 1rem;
+    padding: .9rem;
+  }
+
+  .filters{
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+  .filters button{
+    flex: 1 0 30%;
+    padding: .7rem 0;
+    font-size: .9rem;
+  }
+
+  li{
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    padding: .7rem .6rem;
+  }
+  li span{ font-size: .9rem; }
+  li button{ font-size: 1.1rem; padding: 0 .4rem; }
+  li input[type="checkbox"]{ width: 24px; height: 24px; }
+
+  #theme-toggle{
+    font-size: 1.3rem;
+    padding: .5rem;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *{
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Birds Showcase</title>
+  <link rel="icon" href="assets/images/bird.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div id="loader-birds"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container" style="display:flex; align-items:center;">
+      <!-- logo + reload -->
+      <button class="logo-btn" onclick="location.reload()">
+        <img src="assets/images/bird-wildlife.png" alt="Reload">
+        <span data-i18n-key="logo">Birds</span>
+      </button>
+
+      <!-- centered search (hidden until Start) -->
+      <div class="header-search hidden" style="flex:1; display:flex; justify-content:center;">
+        <div class="search-bar" style="width:100%; max-width:450px;">
+          <input
+            type="text"
+            id="searchBirds"
+            placeholder=""
+            autocomplete="off"
+            style="width:100%; height:2.5rem; font-size:1.1rem; padding:0 .75rem;"
+          >
+        </div>
+      </div>
+
+      <!-- language switcher (replaces nav links) -->
+      <button id="langToggle" class="lang-toggle">EN</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="site-content" class="hidden">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1 data-i18n-key="heroTitle">Discover a new<br>world...</h1>
+        <div class="hero-buttons">
+          <button id="learnMoreBtn" data-i18n-key="learnBtn">▶ My Favorite Bird</button>
+          <button id="getStartedBtn" data-i18n-key="getStartedBtn">Get Started</button>
+        </div>
+      </div>
+      <div class="hero-right" id="heroRight"></div>
+    </section>
+
+    <!-- BIRDS GRID -->
+    <section class="birds-grid hidden" id="initialGrid"></section>
+
+    <!-- VIDEO MODAL -->
+    <div class="video-modal-overlay hidden" id="videoModal">
+      <div class="video-modal">
+        <button class="close-btn" id="videoClose">&times;</button>
+        <h2 data-i18n-key="videoTitle">Interesting facts</h2>
+        <div class="video-container">
+          <iframe
+            id="introVideo"
+            src="https://www.youtube.com/embed/FPRswRWZ23Q"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <button id="videoGetStarted" data-i18n-key="getStartedBtn">Get Started</button>
+      </div>
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div class="modal-overlay hidden">
+      <div class="modal">
+        <button class="close-btn">&times;</button>
+        <img src="" alt="Bird large view">
+        <h2 class="detail-title"></h2>
+        <p class="detail-desc"></p>
+        <dl class="facts">
+          <div><dt data-i18n-key="fOrigin">Origin</dt><dd class="fact-origin"></dd></div>
+          <div><dt data-i18n-key="fWeight">Weight</dt><dd class="fact-weight"></dd></div>
+          <div><dt data-i18n-key="fHeight">Height</dt><dd class="fact-height"></dd></div>
+          <div><dt data-i18n-key="fRarity">Rarity</dt><dd class="fact-rarity"></dd></div>
+          <div><dt data-i18n-key="fFunFact">Fun Fact</dt><dd class="fact-fun"></dd></div>
+        </dl>
+        <audio controls src=""></audio>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer data-i18n-key="footer">Birds Showcase © 2025</footer>
+
+  <!-- Lottie + App JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
