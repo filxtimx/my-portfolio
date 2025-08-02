@@ -55,7 +55,7 @@ const otherLabel     = document.getElementById('other-label');
 const content = {
   en: {
     title:     'Petur Apostolov',
-    text:      `I started programming at 15 in 9th grade with Python and today, at 20, I’m in my third semester of IT studies at New Bulgarian University. Over the years I’ve built up skills in C#, C, C++, JavaScript, HTML, CSS and JSON—though my true passion is frontend development. I love crafting clean, interactive user interfaces and plan to dive into backend work as I grow, but right now I’m all about the UI.`,
+    text:      `I started programming at 15 in 9th grade with Python and today, at 20, I’m in my third semester of IT studies at New Bulgarian University. Over the years I’ve built up skills in C#, C, C++, JavaScript, HTML, CSS and JSON—my true passion is frontend development. I love crafting clean, interactive user interfaces and plan to dive into backend work as I grow, but right now I’m all about the UI.`,
     portfolio: 'My Projects:',
     last:      'Last project:',
     others:    'Other projects:',
